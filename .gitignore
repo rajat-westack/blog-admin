@@ -1,0 +1,57 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+.yarn/install-state.gz
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# local env files
+.env*.local
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+Next.js Login Page with Shadcn UI
+Overview
+This project features a login page built using Next.js along with Shadcn UI components. The login page incorporates both dark and light theme modes, enhancing user experience and accessibility.
+
+Features
+Next.js Framework: Utilizes Next.js for efficient server-side rendering and a great developer experience.
+Shadcn UI Components: Implements user interface components from Shadcn UI, offering sleek and modern design elements.
+Dark and Light Theme Modes: Integrates both dark and light theme modes seamlessly into the UI, providing users with personalized visual preferences.
+Tailwind CSS: Enhances styling capabilities with Tailwind CSS, enabling rapid development and customization.
+Getting Started
+Clone the repository: git clone <repository-url>
+Install dependencies: npm install
+Run the development server: npm run dev
+Open http://localhost:3000 in your browser to view the login page.
+Usage
+To use the login page in your project:
+
+Copy the relevant components from the components directory.
+Integrate the components into your Next.js application.
+Customize the styles and functionality as needed for your project requirements.
