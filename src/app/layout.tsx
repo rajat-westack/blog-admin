@@ -23,7 +23,7 @@ export default function RootLayout({
           defaultTheme="dark"
           storageKey="vite-ui-theme"
           attribute="class">
-          <div className="grid justify-items-end items-start container border-2 h-screen ">
+          <div className="grid justify-items-end items-start container  h-screen ">
             <ModeToggle />
             {children}
           </div>

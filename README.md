@@ -34,3 +34,22 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+
+Next.js Login Page with Shadcn UI
+Overview
+This project features a login page built using Next.js along with Shadcn UI components. The login page incorporates both dark and light theme modes, enhancing user experience and accessibility.
+
+Features
+Next.js Framework: Utilizes Next.js for efficient server-side rendering and a great developer experience.
+Shadcn UI Components: Implements user interface components from Shadcn UI, offering sleek and modern design elements.
+Dark and Light Theme Modes: Integrates both dark and light theme modes seamlessly into the UI, providing users with personalized visual preferences.
+Tailwind CSS: Enhances styling capabilities with Tailwind CSS, enabling rapid development and customization.
+Getting Started
+
+Install dependencies: npm install
+Run the development server: npm run dev
+Open http://localhost:3000 in your browser to view the login page.
+Usage
+
+
