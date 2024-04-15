@@ -40,7 +40,7 @@ const Login = () => {
     });
 
   return (
-    <div className="flex justify-center shadow-lg">
+    <div className="flex justify-center container items-center">
       <form
         onSubmit={handleSubmit}
         className="w-[450px] h-[400px] container shadow-2xl  "
@@ -57,15 +57,12 @@ const Login = () => {
             value={values.email}
             onChange={handleChange}
             onBlur={handleBlur}
-            className=""
+            className="mt-2 mb-4"
             placeholder="Enter your Email"
           />
-          {errors.email && touched.email ? (
-            <p className="text-xs text-red-600">{errors.email}</p>
-          ) : null}
-        </CardContent>
-        <CardContent className={`${errors.email ? "-mt-2" : ""}`}>
-          <Label className={`text-xl font-bold `}>Password</Label>
+          {errors.email && touched.email ? <p>{errors.email}</p> : null}
+
+          <Label className="txt-xl font-bold">Password</Label>
           <Input
             id="password"
             type="password"
@@ -73,17 +70,17 @@ const Login = () => {
             value={values.password}
             onChange={handleChange}
             onBlur={handleBlur}
-            className=" text-blue-500 "
+            className="mt-2 text-blue-500 "
             placeholder="Enter your Password"
           />
           {errors.password && touched.password ? (
-            <p className="text-xs text-red-600">{errors.password}</p>
+            <p>{errors.password}</p>
           ) : null}
         </CardContent>
-        <CardFooter className={`flex items-center justify-center`}>
+        <CardFooter className="flex items-center justify-center">
           <Button
             type="submit"
-            className={`   text-white bg-gradient-to-br w-full mt-10 from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2`}
+            className=" text-white bg-gradient-to-br w-full mt-10 from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2"
           >
             Login
           </Button>
