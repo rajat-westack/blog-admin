@@ -6,9 +6,10 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
 import SideNavbar from "./sideNavbar/SideNavbar";
 
-
 import Login from "./login/page";
-
+import UpperNavBar from "./UpperSideBar/page";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { ScrollBar } from "@/components/ui/scroll-area";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,28 +24,39 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const isLogin = false;
+
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${cn("flex  min-h-screen w-full  ", inter.className, {
-          "debug-screens": process.env.NODE_ENV === "development",
-        })} `}
-      >
-        {isLogin ? (
-          <Login />
-        ) : (
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            {/* <p>sidebar</p> */}
-            <SideNavbar />
+      <body className="snap-none">
+        {/* <UpperNavBar /> */}
 
-            <div className="p-8 w-full ">{children}</div>
-          </ThemeProvider>
-        )}
+        <div
+          className={`${cn(
+            "flex  min-h-screen overflow-hid  w-full  overflow-hidden",
+            inter.className,
+            {
+              "debug-screens": process.env.NODE_ENV === "development",
+            }
+          )} `}
+        >
+          {isLogin ? (
+            <Login />
+          ) : (
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="dark"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <SideNavbar />
+
+              <div className="flex w-full flex-col ">
+                <UpperNavBar />
+                <div className="  w-full p-8 mt-14">{children}</div>
+              </div>
+            </ThemeProvider>
+          )}
+        </div>
       </body>
     </html>
   );

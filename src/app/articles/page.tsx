@@ -1,9 +1,8 @@
-import React from 'react'
+"use client";
+import React from "react";
 
-type Props = {}
+type Props = {};
 
 export default function articles({}: Props) {
-  return (
-    <div>articles</div>
-  )
+  return <div>articles</div>;
 }

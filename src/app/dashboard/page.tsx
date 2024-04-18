@@ -6,9 +6,8 @@ import CreateArtical, { createArticleData } from "@/components/CreateArtical";
 
 import PageTitle from "@/components/PageTitle";
 
-import { ThemeProvider } from "@/components/theme-provider";
-import { ModeToggle } from "@/components/toggle_button";
 import { DollarSign, Layers3, UserCog, UsersRound } from "lucide-react";
+import { useEffect } from "react";
 const carDummyData: CardProps[] = [
   {
     label: "Total Revenue",
@@ -66,6 +65,7 @@ const createArticleData: createArticleData[] = [
     numberOfArticle: 24,
   },
 ];
+
 export default function Dashboard() {
   return (
     <div className="flex flex-col justify-center gap-5 w-full ">
@@ -83,9 +83,11 @@ export default function Dashboard() {
         ))}
       </section>
       <section className="grid-cols-1 grid gap-4 transition-all lg:grid-cols-2">
-        <CardContent>
+        <CardContent className={`bg-white`}>
           <p className="p-4 font-semibold">Overview</p>
-          <BarChart />
+          <span className="color-red-400">
+            <BarChart />
+          </span>
         </CardContent>
         <CardContent className="flex justify-between gap-4">
           <section>

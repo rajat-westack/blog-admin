@@ -1,6 +1,9 @@
+"use client";
 import { cn } from "@/lib/utils";
 import { LucideIcon } from "lucide-react";
-import React from "react";
+import React, { useEffect } from "react";
+import Aos from "aos";
+import "aos/dist/aos.css";
 
 export type CardProps = {
   label: string;
@@ -11,8 +14,16 @@ export type CardProps = {
 };
 
 export default function Card(props: CardProps) {
+  useEffect(() => {
+    Aos.init();
+  }, []);
   return (
-    <CardContent>
+    <CardContent
+      data-aos="flip-up"
+      data-aos-offset="100"
+      data-aos-easing="ease-in-sine"
+      data-aos-duration="900"
+    >
       <section className="flex justify-between gap-2">
         {/* label */}
         <p className="text-sm">{props.label}</p>

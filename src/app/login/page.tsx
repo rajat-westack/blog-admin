@@ -12,6 +12,9 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(
@@ -38,10 +41,17 @@ const Login = () => {
         alert(JSON.stringify(values, null, 2));
       },
     });
+  useEffect(() => {
+    Aos.init();
+  });
 
   return (
     <div className="flex justify-center container items-center">
       <form
+        data-aos="zoom-in"
+        data-aos-offset="100"
+        data-aos-easing="ease-in-sine"
+        data-aos-duration="900"
         onSubmit={handleSubmit}
         className="w-[450px] h-[400px] container shadow-2xl  "
       >
