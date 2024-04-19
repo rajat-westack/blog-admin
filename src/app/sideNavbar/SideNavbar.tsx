@@ -26,7 +26,7 @@ export default function SideNavbar({}: Props) {
   const mobile = onlyWidth < 768;
 
   return (
-    <div className="">
+    <div className="fixed">
       <div className=" relative min-w-[80] h-screen border-r px-3 pb-10 py-[150px]  ">
         {!mobile && (
           <div className="absolute  right-[-15px] top-[50px] mt-[50px]  ">
