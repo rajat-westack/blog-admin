@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import SideNavbar from "./SideNavbar/page";
 import Login from "./login/page";
 import UpperNavBar from "./UpperSideBar/page";
+
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Article",
@@ -24,7 +25,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <div
           className={cn(
-            "min-h-screen w-full  grid grid-cols-[0.2fr_1fr]   gap-x-[10px] gap-2 "
+            "min-h-screen w-full  grid grid-cols-[0.2fr_1fr]  gap-x-[10px] gap-1 "
           )}
         >
           {isLogin ? (
@@ -40,7 +41,7 @@ export default function RootLayout({
                 <SideNavbar />
               </div>
 
-              <div className="grid  grid-rows-[0.1fr_fr]   w-full ">
+              <div className="grid  grid-rows-[0.01fr_0fr] gap-x-[50px] gap-y-[20px] w-full ">
                 <UpperNavBar />
                 <div className="mt-20 w-full -mx-2 ">{children}</div>
               </div>

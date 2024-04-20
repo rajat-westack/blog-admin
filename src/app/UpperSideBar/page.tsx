@@ -18,11 +18,17 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Newspaper } from "lucide-react";
+import { useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 type Props = {};
 
 export default function UpperNavBar({}: Props) {
+  const route = useRouter();
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    route.push("/login");
+  };
   return (
     <nav className="bg-white  dark:bg-gray-900  fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 h-auto">
       <div className="max-w-screen-xl  flex flex-wrap items-center justify-between mx-auto p-4">
@@ -61,7 +67,7 @@ export default function UpperNavBar({}: Props) {
                 </DropdownMenuItem>
               </DropdownMenuGroup>
 
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={handleLogout}>
                 Log out
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
               </DropdownMenuItem>

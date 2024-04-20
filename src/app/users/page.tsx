@@ -7,11 +7,13 @@ import PageTitle from "@/components/PageTitle";
 const Users = () => {
   return (
     <div>
-      <PageTitle
-        title="users"
-        className="flex text-3xl mb-5 flex-col justify-center gap-5 w-block "
-      />
-      <DataTable columns={columns} data={data} />
+      <div className="flex flex-col justify-center gap-5">
+        <PageTitle
+          title="Users"
+          className=" text-3xl font-bold mb-2   gap-5 "
+        />
+        <DataTable columns={columns} data={data} />
+      </div>
     </div>
   );
 };
