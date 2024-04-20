@@ -25,8 +25,8 @@ type Props = {};
 export default function UpperNavBar({}: Props) {
   return (
     <nav className="bg-white  dark:bg-gray-900  fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600 h-auto">
-      <div className="    flex flex-wrap   items-center justify-between ml-auto p-4">
-        <div className="flex items-center  space-x-3 rtl:space-x-reverse ">
+      <div className="max-w-screen-xl  flex flex-wrap items-center justify-between mx-auto p-4">
+        <div className="flex items-center space-x-3 rtl:space-x-reverse ">
           <div className=" rounded-full flex justify-center items-center border-2 border-white w-10 h-10">
             <Newspaper size={25} strokeWidth={1} />
           </div>
@@ -34,12 +34,12 @@ export default function UpperNavBar({}: Props) {
             Articles Point
           </span>
         </div>
-        <div className="flex mr-5  justify-around">
-          <div className=" mr-5 overflow-hidden">{<ModeToggle />}</div>
+        <div className="flex  justify-around">
+          <div className=" mr-2 overflow-hidden">{<ModeToggle />}</div>
 
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button className="bg-blue-500" variant="outline">
+              <Button className="bg-blue-500Dashboard" variant="outline">
                 Profile
               </Button>
             </DropdownMenuTrigger>
@@ -50,27 +50,17 @@ export default function UpperNavBar({}: Props) {
               <DropdownMenuSeparator />
               <DropdownMenuGroup>
                 <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuSub>
-                  <DropdownMenuSubTrigger>Invite users</DropdownMenuSubTrigger>
-                  <DropdownMenuPortal>
-                    <DropdownMenuSubContent>
-                      <DropdownMenuItem>Email</DropdownMenuItem>
-                      <DropdownMenuItem>Message</DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>More...</DropdownMenuItem>
-                    </DropdownMenuSubContent>
-                  </DropdownMenuPortal>
-                </DropdownMenuSub>
                 <DropdownMenuItem>
                   New Team
                   <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
                 </DropdownMenuItem>
+
+                <DropdownMenuItem>
+                  Settings
+                  <DropdownMenuShortcut>⌘+S</DropdownMenuShortcut>
+                </DropdownMenuItem>
               </DropdownMenuGroup>
-              <DropdownMenuSeparator />
-              <DropdownMenuItem>GitHub</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
-              <DropdownMenuItem disabled>API</DropdownMenuItem>
-              <DropdownMenuSeparator />
+
               <DropdownMenuItem>
                 Log out
                 <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>

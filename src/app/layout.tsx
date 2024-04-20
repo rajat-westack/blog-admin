@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { cn } from "@/lib/utils";
-import SideNavbar from "./sideNavbar/SideNavbar";
+import SideNavbar from "./SideNavbar/page";
 import Login from "./login/page";
 import UpperNavBar from "./UpperSideBar/page";
 const inter = Inter({ subsets: ["latin"] });
@@ -21,12 +21,12 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${cn("", inter.className, {
-          "debug-screens": process.env.NODE_ENV === "development",
-        })} `}
-      >
-        <div className="grid grid-cols-[0.5fr_5fr] grid-rows-[1fr] gap-x-[0px] gap-y-[0px] overflow-hidden">
+      <body className={inter.className}>
+        <div
+          className={cn(
+            "min-h-screen w-full  grid grid-cols-[0.2fr_1fr]   gap-x-[10px] gap-2 "
+          )}
+        >
           {isLogin ? (
             <Login />
           ) : (
@@ -40,9 +40,9 @@ export default function RootLayout({
                 <SideNavbar />
               </div>
 
-              <div className="grid  grid-rows-[0.01fr_fr] gap-x-[0px] gap-y-[0px] w-full ">
+              <div className="grid  grid-rows-[0.1fr_fr]   w-full ">
                 <UpperNavBar />
-                <div className="mt-14 w-full p-8 ">{children}</div>
+                <div className="mt-20 w-full -mx-2 ">{children}</div>
               </div>
             </ThemeProvider>
           )}

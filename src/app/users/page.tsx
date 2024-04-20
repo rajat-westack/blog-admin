@@ -9,7 +9,7 @@ const Users = () => {
     <div>
       <PageTitle
         title="users"
-        className="flex text-3xl mb-5 flex-col justify-center gap-5 w-full "
+        className="flex text-3xl mb-5 flex-col justify-center gap-5 w-block "
       />
       <DataTable columns={columns} data={data} />
     </div>

@@ -13,8 +13,6 @@ import { Button } from "@/components/ui/button";
 import { useWindowWidth } from "@react-hook/window-size/throttled";
 import { ModeToggle } from "@/components/toggle_button";
 
-import Link from "next/link";
-
 type Props = {};
 
 export default function SideNavbar({}: Props) {
@@ -26,10 +24,14 @@ export default function SideNavbar({}: Props) {
   const mobile = onlyWidth < 768;
 
   return (
-    <div className="fixed">
-      <div className=" relative min-w-[80] h-screen border-r px-3 pb-10 py-[150px]  ">
+    <div className="relative">
+      <div className=" fixed min-w-[80] h-screen border-r   pb-10 py-[90px]  ">
+        <div className="mr-5">
+          <Nav isCollapsed={mobile ? true : isCollapsed} links={data} />
+        </div>
+
         {!mobile && (
-          <div className="absolute  right-[-15px] top-[50px] mt-[50px]  ">
+          <div className="absolute  right-[-15px] top-[50px] pl-5  mt-[45px]  ">
             <Button
               variant={"secondary"}
               className="rounded-full p-2  "
@@ -39,9 +41,6 @@ export default function SideNavbar({}: Props) {
             </Button>
           </div>
         )}
-        <div className="">
-          <Nav isCollapsed={mobile ? true : isCollapsed} links={data}></Nav>
-        </div>
       </div>
     </div>
   );
