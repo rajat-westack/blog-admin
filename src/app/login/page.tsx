@@ -14,7 +14,9 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+
+import { useRouter } from "next/navigation";
 const validationSchema = Yup.object().shape({
   email: Yup.string()
     .matches(
@@ -29,6 +31,8 @@ const validationSchema = Yup.object().shape({
     .required("Please enter a password"),
 });
 const Login = () => {
+  const router = useRouter();
+  const [login, setLogin] = useState(false);
   const { handleBlur, handleSubmit, touched, handleChange, values, errors } =
     useFormik({
       initialValues: {
@@ -39,6 +43,7 @@ const Login = () => {
 
       onSubmit: (values) => {
         alert(JSON.stringify(values, null, 2));
+        router.push("/");
       },
     });
   useEffect(() => {
@@ -46,7 +51,7 @@ const Login = () => {
   });
 
   return (
-    <div className="flex justify-center container items-center">
+    <div className="flex justify-center my-24 container items-center">
       <form
         data-aos="zoom-in"
         data-aos-offset="100"

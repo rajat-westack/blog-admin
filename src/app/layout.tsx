@@ -18,35 +18,26 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isLogin = false;
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
         <div
           className={cn(
-            "min-h-screen w-full  grid grid-cols-[0.2fr_1fr]  gap-x-[10px] gap-1 "
+            " grid  grid-rows-[0.01fr_0fr] gap-x-[50px] gap-y-[20px]"
           )}
         >
-          {isLogin ? (
-            <Login />
-          ) : (
-            <ThemeProvider
-              attribute="class"
-              defaultTheme="dark"
-              enableSystem
-              disableTransitionOnChange
-            >
-              <div className="">
-                <SideNavbar />
-              </div>
-
-              <div className="grid  grid-rows-[0.01fr_0fr] gap-x-[50px] gap-y-[20px] w-full ">
-                <UpperNavBar />
-                <div className="mt-20 w-full -mx-2 ">{children}</div>
-              </div>
-            </ThemeProvider>
-          )}
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <UpperNavBar />
+            <div className="min-h-screen w-full  grid grid-cols-[0.2fr_1fr]  gap-x-[10px] gap-1  ">
+              <SideNavbar />
+              <div className="mt-20 w-full -mx-2 ">{children}</div>
+            </div>
+          </ThemeProvider>
         </div>
       </body>
     </html>

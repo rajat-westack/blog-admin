@@ -18,13 +18,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Newspaper } from "lucide-react";
-import { useRouter } from "next/navigation";
+import {  useRouter } from "next/navigation";
 import React, { useState } from "react";
 
 type Props = {};
 
 export default function UpperNavBar({}: Props) {
   const route = useRouter();
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     route.push("/login");
