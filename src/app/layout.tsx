@@ -2,10 +2,12 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { cn } from "@/lib/utils";
+
+
 import SideNavbar from "./SideNavbar/page";
-import Login from "./login/page";
 import UpperNavBar from "./UpperSideBar/page";
+import RouterValidation from "./auth/RouterValidation/page";
+import Login from "./login/page";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
@@ -21,24 +23,14 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
-        <div
-          className={cn(
-            " grid  grid-rows-[0.01fr_0fr] gap-x-[50px] gap-y-[20px]"
-          )}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
         >
-          <ThemeProvider
-            attribute="class"
-            defaultTheme="dark"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <UpperNavBar />
-            <div className="min-h-screen w-full  grid grid-cols-[0.2fr_1fr]  gap-x-[10px] gap-1  ">
-              <SideNavbar />
-              <div className="mt-20 w-full -mx-2 ">{children}</div>
-            </div>
-          </ThemeProvider>
-        </div>
+          <RouterValidation>{children}</RouterValidation>
+        </ThemeProvider>
       </body>
     </html>
   );

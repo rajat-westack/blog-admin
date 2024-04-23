@@ -1,7 +1,5 @@
 "use client";
-
 import {
-  Card,
   CardContent,
   CardFooter,
   CardHeader,
@@ -10,26 +8,15 @@ import {
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import * as Yup from "yup";
 import { useFormik } from "formik";
-import Aos from "aos";
+import AOS from "aos";
+import "aos/dist/aos.css";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
-
 import { useRouter } from "next/navigation";
-const validationSchema = Yup.object().shape({
-  email: Yup.string()
-    .matches(
-      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/,
-      "Please enter a valid email  "
-    )
-    .min(6, "email must not less then 6 characters")
-    .max(40)
-    .required("Plesae Enter Email "),
-  password: Yup.string()
-    .min(3, "Password must not ne less then 3 characters")
-    .required("Please enter a password"),
-});
+import { LoginUser } from "../auth/LoginAuth/route";
+import { validationSchema } from "../auth/formvalidation/vormvalidation";
+
 const Login = () => {
   const router = useRouter();
   const [login, setLogin] = useState(false);
@@ -42,23 +29,24 @@ const Login = () => {
       validationSchema: validationSchema,
 
       onSubmit: (values) => {
-        alert(JSON.stringify(values, null, 2));
-        router.push("/");
+        LoginUser(values);
+        
       },
     });
+
   useEffect(() => {
-    Aos.init();
+    AOS.init();
   });
 
   return (
-    <div className="flex justify-center my-24 container items-center">
+    <div>
       <form
         data-aos="zoom-in"
         data-aos-offset="100"
         data-aos-easing="ease-in-sine"
         data-aos-duration="900"
         onSubmit={handleSubmit}
-        className="w-[450px] h-[400px] container shadow-2xl  "
+        className="w-[450px] h-[430px] container shadow-2xl bg-[rgb(2,12,29)] rounded-sm "
       >
         <CardHeader>
           <CardTitle className="text-center text-3xl">Login</CardTitle>
@@ -77,7 +65,7 @@ const Login = () => {
           />
           {errors.email && touched.email ? <p>{errors.email}</p> : null}
 
-          <Label className="txt-xl font-bold">Password</Label>
+          <Label className="text-xl font-bold">Password</Label>
           <Input
             id="password"
             type="password"

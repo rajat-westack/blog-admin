@@ -10,12 +10,9 @@ import {
   ChevronLeft,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useWindowWidth } from "@react-hook/window-size/throttled";
-import { ModeToggle } from "@/components/toggle_button";
+import { useWindowWidth } from "@react-hook/window-size";
 
-type Props = {};
-
-export default function SideNavbar({}: Props) {
+const sideNavbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const toggleSideBar = () => {
     setIsCollapsed(!isCollapsed);
@@ -24,27 +21,29 @@ export default function SideNavbar({}: Props) {
   const mobile = onlyWidth < 768;
 
   return (
-    <div className="relative">
-      <div className=" fixed min-w-[80] h-screen border-r   pb-10 py-[90px]  ">
+    <div className=" ">
+      <div className="relative min-w-[80] h-screen border-r py-[90px]">
+        <div>
+          {!mobile && (
+            <div className="absolute  right-[-15px] top-[50px] pl-5  mt-[45px]  ">
+              <Button
+                variant={"secondary"}
+                className="rounded-full p-2  "
+                onClick={toggleSideBar}
+              >
+                {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
+              </Button>
+            </div>
+          )}
+        </div>
         <div className="mr-5">
           <Nav isCollapsed={mobile ? true : isCollapsed} links={data} />
         </div>
-
-        {!mobile && (
-          <div className="absolute  right-[-15px] top-[50px] pl-5  mt-[45px]  ">
-            <Button
-              variant={"secondary"}
-              className="rounded-full p-2  "
-              onClick={toggleSideBar}
-            >
-              {isCollapsed ? <ChevronRight /> : <ChevronLeft />}
-            </Button>
-          </div>
-        )}
       </div>
     </div>
   );
-}
+};
+export default sideNavbar;
 export const data: any[] = [
   {
     title: "Dashboard",
