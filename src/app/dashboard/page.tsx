@@ -97,6 +97,7 @@ export default function Dashboard() {
           </section>
           {createArticleData.map((data, i) => (
             <CreateArtical
+              key={i}
               name={data.name}
               email={data.email}
               numberOfArticle={data.numberOfArticle}

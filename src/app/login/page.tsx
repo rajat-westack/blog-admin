@@ -14,12 +14,14 @@ import "aos/dist/aos.css";
 import "aos/dist/aos.css";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
-import { LoginUser } from "../auth/LoginAuth/route";
 import { validationSchema } from "../auth/formvalidation/vormvalidation";
-
+import { LoginUser } from "../auth/ApiRequest/ApiRequest";
+import { useDispatch, useSelector } from "react-redux";
+import { setLogin } from "../Redux/Slice";
 const Login = () => {
   const router = useRouter();
-  const [login, setLogin] = useState(false);
+
+  const dispatch = useDispatch();
   const { handleBlur, handleSubmit, touched, handleChange, values, errors } =
     useFormik({
       initialValues: {
@@ -29,8 +31,16 @@ const Login = () => {
       validationSchema: validationSchema,
 
       onSubmit: (values) => {
-        LoginUser(values);
-        
+        LoginUser(values)
+          .then((data) => {
+            // localStorage.setItem("token", data.data.token);
+            dispatch(setLogin(data.data));
+            console.log(data.data);
+            router.push("/");
+          })
+          .catch((error) => {
+            console.log("Error");
+          });
       },
     });
 
@@ -64,7 +74,6 @@ const Login = () => {
             placeholder="Enter your Email"
           />
           {errors.email && touched.email ? <p>{errors.email}</p> : null}
-
           <Label className="text-xl font-bold">Password</Label>
           <Input
             id="password"

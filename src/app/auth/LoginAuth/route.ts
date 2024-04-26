@@ -1,9 +1,7 @@
 import axios from "axios";
-import { useRouter } from "next/router";
-import Swal from "sweetalert2";
 
 const BASE_URI = process.env.NEXT_PUBLIC_API_BASE_URL;
-export const LoginUser = async (value: any) => {
+/* export const LoginUser = async (value: any) => {
   const { email, password } = value;
   const payload = {
     email: email,
@@ -15,18 +13,35 @@ export const LoginUser = async (value: any) => {
     const { data } = user;
     console.log(data.data.token);
     if (data.data.token) {
-      Swal.fire({
-        title: `${data.data.name} you are successfully logged in`,
-        icon: "success",
-      });
       localStorage.setItem("token", JSON.stringify(data.data.token));
-      
     }
     return;
   } catch (error) {
-    Swal.fire({
-      title: `invalid credentials`,
-      icon: "error",
-    });
+    console.log("first error: " + error);
   }
-};
+}; */
+
+export const axiosInstance = axios.create({
+  baseURL: BASE_URI,
+});
+
+axiosInstance.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) config.headers.Authorization = `Bearer ${token}`;
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response.data;
+  },
+  (error) => {
+    alert("Invalid Credentials");
+    console.log("found error from response");
+  }
+);
