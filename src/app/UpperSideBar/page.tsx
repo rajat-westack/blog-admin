@@ -16,19 +16,21 @@ import {
 import { Newspaper } from "lucide-react";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
-import { setLogOut } from "../Redux/Slice";
-import { useDispatch, useSelector } from "react-redux";
+
+import { useDispatch } from "react-redux";
+import { logoutUser } from "../Redux/Slice";
 type Props = {};
 
 export default function UpperNavBar({}: Props) {
-  const data = useSelector((state) => state.dashboard);
+  const userName = localStorage.getItem("name")
+    ? localStorage.getItem("name")
+    : "";
   const route = useRouter();
-  console.log(data.user?.name);
+
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    // localStorage.removeItem("token");
-    dispatch(setLogOut());
+    dispatch(logoutUser());
     route.push("/login");
   };
   return (
@@ -53,7 +55,7 @@ export default function UpperNavBar({}: Props) {
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-56">
               <DropdownMenuLabel>
-                My Account : {data?.user.name}
+                My Account {userName ? " : " + userName : " "}
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
 

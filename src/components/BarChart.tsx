@@ -24,7 +24,7 @@ const data: any[] = [
   { name: "Dec", total: Math.floor(Math.random() * 5000) + 1000 },
 ];
 
-export default function BarChart({}: Props) {
+export default function BarChart() {
   return (
     <ResponsiveContainer width={"100%"} height={350}>
       <BarGraph data={data}>

@@ -38,10 +38,13 @@ axiosInstance.interceptors.request.use(
 );
 axiosInstance.interceptors.response.use(
   (response) => {
+    console.log(response.data.data.token);
+    localStorage.setItem("token", response.data.data.token);
+    localStorage.setItem("name", response.data.data.name);
     return response.data;
   },
   (error) => {
     alert("Invalid Credentials");
-    console.log("found error from response");
+    return Promise.reject(error);
   }
 );
