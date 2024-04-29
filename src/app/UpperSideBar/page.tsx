@@ -25,13 +25,13 @@ export default function UpperNavBar({}: Props) {
   const userName = localStorage.getItem("name")
     ? localStorage.getItem("name")
     : "";
+  console.log(userName);
   const route = useRouter();
 
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    dispatch(logoutUser());
-    route.push("/login");
+    dispatch(logoutUser);
   };
   return (
     <nav className="bg-white  dark:bg-gray-900  fixed w-full z-50 top-0 start-0 border-b border-gray-200 dark:border-gray-600 h-auto">

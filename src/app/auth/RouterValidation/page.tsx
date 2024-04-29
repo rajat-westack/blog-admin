@@ -3,7 +3,7 @@ import UpperNavBar from "@/app/UpperSideBar/page";
 import React, { useEffect, useState } from "react";
 import SideNavbar from "@/app/SideNavbar/page";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
+
 
 export default function RouterValidation({ children }) {
   const route = useRouter();
@@ -13,12 +13,12 @@ export default function RouterValidation({ children }) {
     const token = localStorage.getItem("token")
       ? localStorage.getItem("token")
       : null;
-    if (token) {
-      setRedirect(true);
-      route.replace("/");
-    } else {
+    if (!token) {
       setRedirect(false);
       route.push("/login");
+    } else {
+      setRedirect(true);
+      route.push("/");
     }
   }, [redirect]);
   return (

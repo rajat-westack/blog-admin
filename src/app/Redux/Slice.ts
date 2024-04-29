@@ -1,11 +1,12 @@
 "use client";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import ApiRequest from "../auth/ApiRequest/ApiRequest";
-const localStorageName = localStorage.getItem("user");
-import { useRouter } from "next/navigation";
+const localStorageName = localStorage.getItem("name");
+
 
 const initialState = {
-  user: localStorageName ? localStorageName : null,
+  user: localStorageName ? localStorageName : " ",
+  userData: "",
   isloggedin: false,
   isError: false,
   isLoading: false,
@@ -23,15 +24,15 @@ export const Slice = createSlice({
         state.isLoading = true;
       })
       .addCase(loginUsers.fulfilled, (state, action) => {
-        state.user = action.payload;
+        state.userData = action.payload;
         state.isLoading = false;
         state.isSuccess = true;
       })
       .addCase(loginUsers.rejected, (state, action) => {
         state.isError = true;
         state.isSuccess = false;
+        state.userData = null;
         state.message = action.payload;
-        state.user = null;
       })
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
@@ -46,7 +47,7 @@ export const loginUsers = createAsyncThunk(
       // console.log(user);
       const response = await ApiRequest.LoginUser(user);
 
-      return await ApiRequest.LoginUser(user);
+      return response;
     } catch (error) {
       console.log("error from asyncthunk");
 
@@ -57,10 +58,16 @@ export const loginUsers = createAsyncThunk(
 
 export const logoutUser = createAsyncThunk("auth/logout", async () => {
   try {
-    await ApiRequest.LogoutUser();
+ await ApiRequest.LogoutUser();
+  
   } catch (error) {
-    console.log(error);
+    const message =
+      (error.response && error.response.data && error.response.data.message) ||
+      error.message ||
+      error.toString();
+
+    return thunkAPI.rejectWithValue(message);
   }
 });
-export const {  } = Slice.actions;
+export const {} = Slice.actions;
 export default Slice.reducer;
