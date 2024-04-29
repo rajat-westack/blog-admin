@@ -1,11 +1,11 @@
-import { axiosInstance } from "../LoginAuth/route";
+import { axiosInstance } from "../Interseptor/route";
 const endponint = "/signin";
 const LoginUser = (payload) => {
   return axiosInstance.post(endponint, payload);
 };
 const LogoutUser = () => {
-  localStorage.removeItem("token");
   localStorage.removeItem("name");
+  localStorage.removeItem("token");
 };
 
 const ApiRequest = {
